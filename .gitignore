@@ -1,0 +1,17 @@
+env/
+.venv/
+env/
+.env
+.env.local
+.vscode/
+.DS_Store
+Thumbs.db
+__pycache__/
+venv/
+*.pt
+conf.txt
+*.db
+.pytest_cache/
+.ipynb_checkpoints/
+eval.py
+evaluate.py
