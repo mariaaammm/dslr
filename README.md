@@ -60,12 +60,12 @@ Index,Hogwarts House
 ## Model
 
 - **One-vs-rest:** one binary logistic regression per house ("this house" vs "the others"). A student is assigned to the house whose model returns the highest probability.
-- **Hypothesis and loss:** `h = sigmoid(X·w + b)`, cross-entropy loss. Probabilities are clipped to avoid `log(0)`, and the input of the sigmoid is clipped to avoid overflow.
+- **Hypothesis and loss:** `h = sigmoid(X·w + b)`, cross-entropy loss. Probabilities are clipped to avoid `log(0)` and the input of the sigmoid is clipped to avoid overflow.
 - **Gradient descent (batch):** `w -= lr * Xᵀ(h - y) / m`, `b -= lr * sum(h - y) / m`. Defaults: learning rate 0.1, 1000 iterations, weights initialised to zero.
 - **Features:** all 13 course scores are given to the model. The analysis above suggests that Arithmancy and Care of Magical Creatures carry almost no information and that Astronomy duplicates Defense Against the Dark Arts; training on the 9 courses listed in `FEATURES` (`utils.py`) gives the same accuracy.
-- **Missing values:** the scaler ignores missing scores when computing the mean and standard deviation of each feature (`nanmean`, `nanstd`), and replaces a missing score by the training mean (a z-score of 0). Rows are never dropped, because every student of the test set must get a house.
+- **Missing values:** the scaler ignores missing scores when computing the mean and standard deviation of each feature (`nanmean`, `nanstd`) and replaces a missing score by the training mean (a z-score of 0). Rows are never dropped, because every student of the test set must get a house.
 - **Standardization:** every feature is standardized (z-score) with the training mean and standard deviation. They are saved in `weights.json`, so `logreg_predict.py` applies exactly the same transformation.
-- **`weights.json`:** the feature list, the scaler's mean and std, and the weights and bias of the four models.
+- **`weights.json`:** the feature list, the scaler's mean and std and the weights and bias of the four models.
 
 ## Results
 
