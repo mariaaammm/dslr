@@ -15,18 +15,17 @@ def pearson_corr(x, y):
 
 # What are the two features that are similar?
 def most_similar_pair(df):
-    """Return ((a, b), r) for the pair of courses with the largest |Pearson r|"""
     best, best_r = None, 0.0
 
     for i, a in enumerate(COURSES):
-        for b in COURSES[i + 1:]:                  # each pair once
-            pair = df[[a, b]].dropna()             # rows where both scores exist
+        for b in COURSES[i + 1:]:
+            pair = df[[a, b]].dropna()
             if len(pair) < 2:
                 continue
             r = pearson_corr(pair[a].to_numpy(), pair[b].to_numpy())
             if abs(r) > abs(best_r):
                 best, best_r = (a, b), r
-                
+
     return best, best_r
 
 
