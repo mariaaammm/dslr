@@ -56,12 +56,6 @@ class LogisticRegressionScratch:
             "bias": self.bias
         }
 
-    @classmethod
-    def from_dict(cls, d):
-        model = cls()
-        model.weights = np.array(d["weights"])
-        model.bias = d["bias"]
-        return model
 
 def main():
     parser = argparse.ArgumentParser()
