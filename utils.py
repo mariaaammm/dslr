@@ -8,14 +8,15 @@ COURSES = ["Arithmancy", "Astronomy", "Herbology", "Defense Against the Dark Art
            "Muggle Studies", "Ancient Runes", "History of Magic", "Transfiguration", "Potions",
            "Care of Magical Creatures", "Charms", "Flying"]
 
-FEATURES = ["Defense Against the Dark Arts", "Charms", "Ancient Runes", "Divination", "Herbology",
-            "Transfiguration", "Flying", "Muggle Studies", "History of Magic"]
+SELECTED_FEATURES = ["Herbology", "Defense Against the Dark Arts", "Divination",
+           "Muggle Studies", "Ancient Runes", "History of Magic", "Transfiguration", "Potions",
+           "Charms", "Flying"]
 
-COLORS = {
-    "Gryffindor": "#c24656",
-    "Hufflepuff": "#e8c547",
-    "Ravenclaw":  "#3b6fd4",
-    "Slytherin":  "#30a14e",
+HOUSE_COLORS = {
+    "Gryffindor": "#5e030a",
+    "Hufflepuff": "#ecce0b",
+    "Ravenclaw": "#12013f",
+    "Slytherin": "#012910",
 }
 
 def load(path):

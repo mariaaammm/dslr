@@ -11,7 +11,7 @@ def fill_nan_with_mean(df, features, means):
     return df
 
 def main():
-    parser = argparse.ArgumentParser(description="Predict the Hogwarts house of every student")
+    parser = argparse.ArgumentParser()
     parser.add_argument("dataset")
     parser.add_argument("weights")
     args = parser.parse_args()
@@ -19,15 +19,20 @@ def main():
     try:
         with open(args.weights) as f:
             model = json.load(f)
-    except FileNotFoundError:
-        sys.exit(f"Error: file not found: {args.weights}")
-
-    features = model["features"]
-    scaler_mean = np.array(model["scaler_mean"])
-    scaler_std = np.array(model["scaler_std"])
-    models = model["models"]
+        features = model["features"]
+        scaler_mean = np.array(model["scaler_mean"])
+        scaler_std = np.array(model["scaler_std"])
+        models = model["models"]
+    except Exception as e:
+        print(e)
+        sys.exit()
 
     df = load(args.dataset)
+    missing = [c for c in features if c not in df.columns]
+    if missing:
+        sys.exit(f"Error: missing columns: {', '.join(missing)}")
+
+
     df_clean = fill_nan_with_mean(df.copy(), features, scaler_mean)
 
     X = df_clean[features].values
